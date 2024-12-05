@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block tittle %} Login {% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 col-md-8 col-lg-6 m-auto">
+      <form  action="/login" method="post">
+          <h3 style="text-align: center;">Faça seu Login</h3>
+          <div data-mdb-input-init class="form-outline mb-4">
+              <label style="font-size: 1.3em; class="form-label" for="form2Example1">Email</label>
+              <input type="email" id="form2Example1" class="form-control" name="email" />
+            </div>
+      
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <label style="font-size: 1.3em;" class="form-label" for="form2Example2">Senha</label>
+              <input type="password" name="senha" id="form2Example2" class="form-control" />
+            </div>
+      
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+              <div class="col d-flex justify-content-center">
+                <!-- Checkbox -->
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
+                  <label class="form-check-label" for="form2Example34"> Lembrar de mim </label>
+                </div>
+              </div>
+      
+              <div class="col">
+                <!-- Simple link -->
+                <a href="#!">Esqueceu a senha?</a>
+              </div>
+            </div>
+      
+            <!-- Submit button -->
+            <div class="row"><button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4 w-25 m-auto">Login</button></div>
+      
+            {% if msgerro %}
+            <div class="alert alert-danger" role="alert">
+                {{ msgerro }}
+            </div>
+        {% endif %}
+      
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p>Não tem uma conta? <a href="#!">Registre-se</a></p>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

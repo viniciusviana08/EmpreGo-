@@ -1,0 +1,23 @@
+<div class="card mb-4 shadow">
+    <div class="card-body">
+        <h5 class="card-title text-primary text-center fs-4">
+            {{ vaga.titulo }}
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted fs-5">
+            {{ vaga.nome_empresa }}
+        </h6>
+        <p class="card-text">
+            {{ vaga.descricao | truncate(100) }}
+        </p>  
+        <p class="card-text fs-5">
+            <small class="text-muted">
+                {{ vaga.formato }} - {{ vaga.tipo }}
+            </small></p>
+        <a href="/sobre_vaga/{{ vaga.id_vaga }}" class="btn btn-primary">
+            Ver mais
+        </a>
+        {% if login == 'empresa' %}
+        <a href="/visualizar_curriculos/{{vaga.id_vaga}}" class="btn btn-primary">Visualizar Currículos</a>
+        {% endif %}
+    </div>
+</div>

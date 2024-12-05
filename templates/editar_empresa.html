@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block tittle %} Editar Empresa {% endblock %}
+
+{% block content %}
+<p>Menu: </p
+    <ul>
+    <li><a href="/adm">Voltar</a></li>
+    </ul>
+<hr>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>Editar Informações da Empresa</h1>
+
+            {% if msg_erro %}  <!-- Exibe mensagem de erro, se houver -->
+                <div class="alert alert-danger" role="alert">
+                    {{ msg_erro }}
+                </div>
+            {% endif %}
+
+            <form class="needs-validation" action="/editar_empresa/{{ empresa.id_empresa }}" method="post" novalidate>
+                <div class="mb-3">
+                    <label for="nome_empresa" class="form-label">Nome Fantasia da Empresa</label>
+                    <input type="text" class="form-control" id="nome_empresa" name="nome_empresa" value="{{ empresa.nome_empresa }}" required>
+                    <div class="invalid-feedback">
+                            Por favor, insira um nome para a empresa.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="cnpj" class="form-label">CNPJ da Empresa</label>
+                    <input type="text" class="form-control" id="cnpj" name="cnpj" maxlength="14" placeholder="Somente números" value="{{ empresa.cnpj }}" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira um CNPJ para a empresa.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="telefone" class="form-label">Telefone da Empresa</label>
+                    <input type="text" class="form-control" id="telefone" name="telefone" maxlength="11" placeholder="Somente números" value="{{ empresa.telefone }}" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira um telefone para a empresa.
+                    </div>
+                </div>
+                <h2>Informações para acesso da plataforma</h2>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Email da empresa" value="{{ empresa.email }}" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira um email para a empresa.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="text" class="form-control" id="senha" name="senha" placeholder="Senha da empresa" value="{{ empresa.senha }}" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira uma senha para a empresa.
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Editar Empresa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <form action="/editar_empresa/{{empresa['id_empresa']}}" method="post">
+<label for="nome_empresa">Nome da Empresa</label>
+<input type="text" name="nome_empresa" value="{{empresa['nome_empresa']}}" required><br><br>
+
+<label for="cnpj">CNPJ</label>
+<input type="text" name="cnpj" value="{{empresa['cnpj']}}" maxlength="14" placeholder="Somente números" required><br><br>
+
+<label for="telefone">Telefone</label>
+<input type="text" name="telefone" value="{{empresa['telefone']}}" maxlength="11" placeholder="Somente números" required><br><br>
+
+<h2>Informações para acesso da plataforma</h2>
+<label for="email">Email</label>
+<input type="email" name="email" value="{{empresa['email']}}" required><br><br>
+
+<label for="senha">Senha</label>
+<input type="text" name="senha" value="{{empresa['senha']}}" required><br><br>
+
+<button type="submit">Editar Empresa</button>
+{% if msg_erro %}
+    <p style="color: red;">{{ msg_erro }}</p>
+{% endif %}
+</form> -->
+{% endblock %}

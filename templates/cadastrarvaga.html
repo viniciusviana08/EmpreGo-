@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}EmpreGO! - Cadastrar Vaga{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>Cadastrar Nova Vaga</h1>
+
+            {% if msg_erro %}  <!-- Exibe mensagem de erro, se houver -->
+                <div class="alert alert-danger" role="alert">
+                    {{ msg_erro }}
+                </div>
+            {% endif %}
+
+            <form class="row g-3 needs-validation" action="/cadastrar_vaga" method="post" novalidate>
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título da Vaga</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira um título para a vaga. Ex: Analista de TI
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="descricao" class="form-label">Descrição da Vaga</label>
+                    <textarea class="form-control" id="descricao" name="descricao" rows="5" required></textarea>
+                    <div class="invalid-feedback">
+                        Por favor, insira uma descrição para a vaga. Ex: Vaga de desenvolvimento de software
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="formato" class="form-label">Formato de Trabalho</label>
+                    <select class="form-select" id="formato" name="formato" required>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Remoto">Remoto</option>
+                        <option value="Híbrido">Híbrido</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Por favor, insira um formato de trabalho para a vaga. Ex: Remoto
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo" class="form-label">Tipo de Contrato</label>
+                    <select class="form-select" id="tipo" name="tipo" required>
+                        <option value="CLT">CLT</option>
+                        <option value="PJ">PJ</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Por favor, insira um tipo de contrato para a vaga. Ex: CLT
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="local" class="form-label">Local da Vaga (se aplicável)</label>
+                    <input type="text" class="form-control" id="local" name="local" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira um local para a vaga. Ex: São Paulo
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="salario" class="form-label">Salário (opcional)</label>
+                    <input type="text" class="form-control" id="salario" name="salario" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira um salário para a vaga. Ex: 5000
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Cadastrar Vaga</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
+    <script>
+        Inputmask("numeric",{
+            radixPoint: ",",
+            groupSeparator: ".",
+            digits: 2,
+            autoGroup: true,
+            rightAlign: false,
+            allowMinus: false,
+            prefix: "R$"
+            }).mask(document.getElementById('salario'));
+    </script>
+    
+{% endblock %}
