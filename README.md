@@ -45,7 +45,7 @@
 ### **Passo a passo**  
 1. Clone o repositório:  
    ```bash
-   git clone https://github.com/seu_usuario/EmpreGo.git
+   git clone https://github.com/viniciusviana08/EmpreGo.git
    cd EmpreGo
 2. Crie um ambiente virtual (opcional):  
    ```bash
