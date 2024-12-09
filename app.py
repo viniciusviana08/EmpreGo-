@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash, send_from_directory
 from mysql.connector import Error
 from config import *
 from db_functions import *
@@ -572,6 +572,14 @@ def procurar_vagas():
         return f"ERRO! Outros erros: {erro}"
     finally:
         encerrar_db(cursor, conexao)   
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    try:
+        caminho_para_pasta_dos_curriculos = 'static/uploads'
+        return send_from_directory(caminho_para_pasta_dos_curriculos, filename, as_attachment=True)
+    except FileNotFoundError:
+        return "Arquivo não encontrado.", 
 
 @app.route('/delete/<filename>')
 def delete_file(filename):
